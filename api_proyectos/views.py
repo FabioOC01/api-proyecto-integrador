@@ -1,27 +1,23 @@
-from django.http import JsonResponse
-from django.shortcuts import render
-from .models import ProyectoIntegrador
+from rest_framework import viewsets
+from .models import ProyectoIntegrador, CategoriaProyecto, Año, Grupo, Alumno
+from .serializers import ProyectoIntegradorSerializer, CategoriaProyectoSerializer, AñoSerializer, GrupoSerializer, AlumnoSerializer
 
-# Vista para la ruta /api/
-def mi_vista_api(request):
-    # Crear una respuesta JSON con un mensaje
-    return JsonResponse({"message": "Bienvenido a la API"})
+class ProyectoIntegradorViewSet(viewsets.ModelViewSet):
+    queryset = ProyectoIntegrador.objects.all()
+    serializer_class = ProyectoIntegradorSerializer
 
-# Ejemplo de vista para obtener todos los proyectos integradores
-def obtener_proyectos(request):
-    proyectos = ProyectoIntegrador.objects.all().values('id', 'titulo', 'descripcion')
-    return JsonResponse(list(proyectos), safe=False)
+class CategoriaProyectoViewSet(viewsets.ModelViewSet):
+    queryset = CategoriaProyecto.objects.all()
+    serializer_class = CategoriaProyectoSerializer
 
-# Ejemplo de vista para obtener un proyecto específico por ID
-def obtener_proyecto(request, proyecto_id):
-    try:
-        proyecto = ProyectoIntegrador.objects.get(id=proyecto_id)
-        data = {
-            'id': proyecto.id,
-            'titulo': proyecto.titulo,
-            'descripcion': proyecto.descripcion
-        }
-        return JsonResponse(data)
-    except ProyectoIntegrador.DoesNotExist:
-        return JsonResponse({'error': 'Proyecto no encontrado'}, status=404)
+class AñoViewSet(viewsets.ModelViewSet):
+    queryset = Año.objects.all()
+    serializer_class = AñoSerializer
 
+class GrupoViewSet(viewsets.ModelViewSet):
+    queryset = Grupo.objects.all()
+    serializer_class = GrupoSerializer
+
+class AlumnoViewSet(viewsets.ModelViewSet):
+    queryset = Alumno.objects.all()
+    serializer_class = AlumnoSerializer
