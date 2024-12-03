@@ -75,15 +75,19 @@ WSGI_APPLICATION = 'api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
 
-import os
-import dj_database_url
 
 DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL', 'postgresql://root:bZH98yPSSyWP3gNXXxpMoWigwmRtAs8O@dpg-ct782sjtq21c73bkdcf0-a/db_integrador'),
-        conn_max_age=600,
-        ssl_require=True
-    )
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'db_integrador',  # Nombre de tu base de datos
+        'USER': 'root',  # Usuario de la base de datos
+        'PASSWORD': 'bZH98yPSSyWP3gNXXxpMoWigwmRtAs8O',  # Contraseña de la base de datos
+        'HOST': 'dpg-ct782sjtq21c73bkdcf0-a',  # Nombre del host de la base de datos
+        'PORT': '5432',  # Puerto de la base de datos (5432 es el predeterminado para PostgreSQL)
+        'OPTIONS': {
+            'sslmode': 'require',  # Habilita SSL para la conexión
+        },
+    }
 }
 
 
