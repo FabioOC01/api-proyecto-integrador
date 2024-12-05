@@ -1,6 +1,6 @@
 from rest_framework import viewsets
-from .models import ProyectoIntegrador, CategoriaProyecto, Año, Grupo, Alumno
-from .serializers import ProyectoIntegradorSerializer, CategoriaProyectoSerializer, AñoSerializer, GrupoSerializer, AlumnoSerializer
+from .models import ProyectoIntegrador, CategoriaProyecto, Seccion, Año, Grupo, Alumno
+from .serializers import ProyectoIntegradorSerializer, CategoriaProyectoSerializer, AñoSerializer, GrupoSerializer, AlumnoSerializer, SeccionSerializer
 
 class ProyectoIntegradorViewSet(viewsets.ModelViewSet):
     queryset = ProyectoIntegrador.objects.all()
@@ -21,3 +21,9 @@ class GrupoViewSet(viewsets.ModelViewSet):
 class AlumnoViewSet(viewsets.ModelViewSet):
     queryset = Alumno.objects.all()
     serializer_class = AlumnoSerializer
+
+class SeccionViewSet(viewsets.ModelViewSet):
+    queryset = Seccion.objects.all()
+    serializer_class = SeccionSerializer
+
+
