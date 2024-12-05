@@ -14,11 +14,6 @@ class CategoriaProyectoSerializer(serializers.ModelSerializer):
 
 class ProyectoIntegradorSerializer(serializers.ModelSerializer):
     imagen = serializers.ImageField(use_url=True)
-    documento = serializers.FileField(use_url=True)
-    video = serializers.FileField(use_url=True)
-    año = AñoSerializer()
-    categoria = CategoriaProyectoSerializer()
-
     class Meta:
         model = ProyectoIntegrador
         fields = ['id', 'titulo', 'descripcion', 'año', 'imagen', 'documento', 'video', 'url_github', 'categoria']
