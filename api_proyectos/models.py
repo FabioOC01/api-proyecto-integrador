@@ -12,11 +12,11 @@ class CategoriaProyecto(models.Model):
         return self.nombre
 
 class Año(models.Model):
+    año = models.IntegerField(default=date.today().year)
     SEMESTRE_CHOICES = [
         (1, '1'),
         (2, '2')
     ]
-    año = models.IntegerField(default=date.today().year)
     semestre = models.IntegerField(choices=SEMESTRE_CHOICES, default=1)
 
     class Meta:

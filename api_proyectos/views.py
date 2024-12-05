@@ -3,7 +3,7 @@ from .models import ProyectoIntegrador, CategoriaProyecto, Seccion, Año, Grupo,
 from .serializers import ProyectoIntegradorSerializer, CategoriaProyectoSerializer, AñoSerializer, GrupoSerializer, AlumnoSerializer, SeccionSerializer
 
 class ProyectoIntegradorViewSet(viewsets.ModelViewSet):
-    queryset = ProyectoIntegrador.objects.all()
+    queryset = ProyectoIntegrador.objects.select_related('año', 'categoria').all()
     serializer_class = ProyectoIntegradorSerializer
 
 class CategoriaProyectoViewSet(viewsets.ModelViewSet):

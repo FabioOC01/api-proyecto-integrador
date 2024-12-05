@@ -9,11 +9,13 @@ class AñoSerializer(serializers.ModelSerializer):
 class CategoriaProyectoSerializer(serializers.ModelSerializer):
     class Meta:
         model = CategoriaProyecto
-        fields = ['id', 'nombre', 'descripcion']
+        fields = ['id', 'nombre']
 
 
 class ProyectoIntegradorSerializer(serializers.ModelSerializer):
     imagen = serializers.ImageField(use_url=True)
+    categoria = CategoriaProyectoSerializer(read_only=True)
+    año = AñoSerializer(read_only=True)
     class Meta:
         model = ProyectoIntegrador
         fields = ['id', 'titulo', 'descripcion', 'año', 'imagen', 'documento', 'video', 'url_github', 'categoria']
