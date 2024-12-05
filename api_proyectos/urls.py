@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import ProyectoIntegradorViewSet, CategoriaProyectoViewSet, AñoViewSet, GrupoViewSet, AlumnoViewSet
+from .views import ProyectoIntegradorViewSet, CategoriaProyectoViewSet, AñoViewSet, GrupoViewSet, AlumnoViewSet, SeccionViewSet
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -10,6 +10,7 @@ router.register(r'categorias', CategoriaProyectoViewSet)
 router.register(r'anos', AñoViewSet)
 router.register(r'grupos', GrupoViewSet)
 router.register(r'alumnos', AlumnoViewSet)
+router.register(r'secciones', SeccionViewSet)  
 
 urlpatterns = [
     path('api/', include(router.urls)),
