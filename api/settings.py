@@ -65,9 +65,9 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 CORS_ALLOW_ALL_ORIGINS = True
 
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Si tu frontend está en el puerto 3000
-    'https://mi-frontend.com', 
-    'http://localhost:8000', # Tu dominio de producción
+    'http://localhost:3000',  
+    'http://localhost:5173/',
+    'http://localhost:8000', 
 ]
 
 ROOT_URLCONF = 'api.urls'
