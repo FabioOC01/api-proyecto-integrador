@@ -35,7 +35,7 @@ class GrupoSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Grupo
-        fields = ['id', 'numero', 'seccion', 'seccion_id']
+        fields = ['id', 'nombre', 'seccion', 'seccion_id']
 
 class AlumnoSerializer(serializers.ModelSerializer):
     class Meta:

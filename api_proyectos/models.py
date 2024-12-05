@@ -45,7 +45,7 @@ class Seccion(models.Model):
         return self.nombre
 
 class Grupo(models.Model):
-    numero = models.CharField(max_length=50)
+    nombre = models.CharField(max_length=50)
     seccion = models.ForeignKey(Seccion, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
