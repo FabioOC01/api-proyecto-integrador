@@ -1,20 +1,27 @@
 from rest_framework import serializers
 from .models import ProyectoIntegrador, CategoriaProyecto, Año, Grupo, Alumno, Seccion
 
-class ProyectoIntegradorSerializer(serializers.ModelSerializer):
+class AñoSerializer(serializers.ModelSerializer):
     class Meta:
-        model = ProyectoIntegrador
-        fields = ['id', 'titulo', 'descripcion', 'año', 'imagen', 'documento', 'video', 'url_github', 'categoria']
+        model = Año
+        fields = ['id', 'año', 'semestre']
 
 class CategoriaProyectoSerializer(serializers.ModelSerializer):
     class Meta:
         model = CategoriaProyecto
         fields = ['id', 'nombre', 'descripcion']
 
-class AñoSerializer(serializers.ModelSerializer):
+
+class ProyectoIntegradorSerializer(serializers.ModelSerializer):
+    imagen = serializers.ImageField(use_url=True)
+    documento = serializers.FileField(use_url=True)
+    video = serializers.FileField(use_url=True)
+    año = AñoSerializer()
+    categoria = CategoriaProyectoSerializer()
+
     class Meta:
-        model = Año
-        fields = ['id', 'año', 'semestre']
+        model = ProyectoIntegrador
+        fields = ['id', 'titulo', 'descripcion', 'año', 'imagen', 'documento', 'video', 'url_github', 'categoria']
 
 class SeccionSerializer(serializers.ModelSerializer):
     class Meta:
