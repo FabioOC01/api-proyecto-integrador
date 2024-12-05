@@ -31,7 +31,7 @@ class ProyectoIntegrador(models.Model):
     año = models.ForeignKey(Año, on_delete=models.CASCADE, null=True, blank=True)
     imagen = models.ImageField(upload_to='imagenes/', null=True, blank=True)
     documento = models.FileField(upload_to='documentos/', null=True, blank=True)
-    video = models.FileField(max_length=300)
+    video = models.CharField(max_length=300)
     url_github = models.URLField(max_length=255, null=True, blank=True)
     categoria = models.ForeignKey(CategoriaProyecto, on_delete=models.CASCADE, null=True, blank=True)
 
