@@ -19,7 +19,7 @@ class GrupoViewSet(viewsets.ModelViewSet):
     serializer_class = GrupoSerializer
 
 class AlumnoViewSet(viewsets.ModelViewSet):
-    queryset = Alumno.objects.all()
+    queryset = Alumno.objects.select_related('grupo', 'seccion', 'proyecto').all()
     serializer_class = AlumnoSerializer
 
 class SeccionViewSet(viewsets.ModelViewSet):

@@ -45,7 +45,7 @@ class Seccion(models.Model):
         return self.nombre
 
 class Grupo(models.Model):
-    nombre = models.CharField(max_length=50)
+    numero = models.CharField(max_length=50)
     seccion = models.ForeignKey(Seccion, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
@@ -56,10 +56,10 @@ class Alumno(models.Model):
     apellido = models.CharField(max_length=100)
     grupo = models.ForeignKey(Grupo, on_delete=models.CASCADE, null=True, blank=True)
     seccion = models.ForeignKey(Seccion, on_delete=models.CASCADE, null=True, blank=True)
-    año = models.ForeignKey(Año, on_delete=models.CASCADE, null=True, blank=True)
+    proyecto = models.ForeignKey(ProyectoIntegrador, on_delete=models.CASCADE, null=True, blank=True)
 
     def __str__(self):
-        return f"{self.nombre} {self.apellido} - {self.año}"
+        return f"{self.nombre} {self.apellido} "
 
 class AlumnoProyecto(models.Model):
     proyecto = models.ForeignKey(ProyectoIntegrador, on_delete=models.CASCADE, null=True, blank=True)

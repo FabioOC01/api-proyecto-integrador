@@ -40,6 +40,6 @@ class GrupoSerializer(serializers.ModelSerializer):
 class AlumnoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Alumno
-        fields = ['id', 'nombre', 'apellido', 'grupo', 'seccion', 'año']
+        fields = ['id', 'nombre', 'apellido', 'grupo', 'seccion', 'proyecto']
 
 
