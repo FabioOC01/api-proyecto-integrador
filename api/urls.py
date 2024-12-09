@@ -15,7 +15,7 @@ router.register(r'secciones', SeccionViewSet)
 
 urlpatterns = [
     path('api/', include(router.urls)),
-    path('auth/', include('your_app.urls')),
+    path('auth/', include('api.urls')),
 ]
 
 if settings.DEBUG:
