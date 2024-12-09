@@ -1,11 +1,9 @@
 from django.conf import settings
 from django.conf.urls.static import static
-
 from django.urls import include, path
 
 urlpatterns = [
-    # Otras rutas
-    path('auth/', include('api.urls')),  # Cambia "your_app_name" por el nombre de tu app
+    path('auth/', include('api.urls')),
 ]
 
 if settings.DEBUG:
