@@ -23,7 +23,7 @@ class ProyectoIntegradorSerializer(serializers.ModelSerializer):
         model = ProyectoIntegrador
         fields = [
             'id', 'titulo', 'descripcion', 'año', 'imagen', 'documento',
-            'video', 'url_github', 'categoria', 'categoria_id'
+            'video', 'url_github', 'categoria'
         ]
    
 
