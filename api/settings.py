@@ -25,6 +25,13 @@ INSTALLED_APPS = [
     'storages'
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ),
+}
+
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -59,7 +66,7 @@ MEDIA_URL = f'https://{AWS_STORAGE_BUCKET_NAME}.s3.us-east-2.amazonaws.com/'
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-SECRET_KEY = os.getenv('SECRET_KEY')
+SECRET_KEY = 'K4b_ZeV9mJkoytUY5u-jm_we-K3BnOLk5xIYbkBvzlScK5JnhyqZIXtjvc0RFaN86EM'
 
 
 
@@ -122,11 +129,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': (
-        'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ),
-}
 
 LANGUAGE_CODE = 'en-us'
 
