@@ -13,6 +13,7 @@ ALLOWED_HOSTS = ['api-proyecto-integrador.onrender.com', 'localhost', '127.0.0.1
 
 INSTALLED_APPS = [
     'rest_framework',
+    'rest_framework_simplejwt',
     'api_proyectos',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -122,12 +123,9 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 REST_FRAMEWORK = {
-    'DEFAULT_AUTHENTICATION_CLASSES': [
+    'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-    ],
-    'DEFAULT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.IsAuthenticated',
-    ],
+    ),
 }
 
 LANGUAGE_CODE = 'en-us'
