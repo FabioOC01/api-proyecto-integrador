@@ -18,9 +18,7 @@ class Año(models.Model):
         return f"{self.año}"
 
     class Meta:
-        # Usa una lista o tupla, incluso si es un solo campo
-        unique_together = [('año',)]  # Formato correcto
-
+        pass # No necesitas unique_together
 
 
 class ProyectoIntegrador(models.Model):
@@ -58,9 +56,6 @@ class Alumno(models.Model):
 
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
-
-    class Meta:
-        db_table = 'api_proyectos_alumno'  # Especificamos el nombre deseado para la tabla
 
 class AlumnoProyecto(models.Model):
     proyecto = models.ForeignKey(ProyectoIntegrador, on_delete=models.CASCADE, null=True, blank=True)
