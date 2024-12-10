@@ -14,40 +14,41 @@ class CategoriaProyectoSerializer(serializers.ModelSerializer):
 
 class ProyectoIntegradorSerializer(serializers.ModelSerializer):
     imagen = serializers.ImageField(use_url=True)
-    categoria = CategoriaProyectoSerializer()
-    año = AñoSerializer()
+    categoria = serializers.PrimaryKeyRelatedField(
+        queryset=CategoriaProyecto.objects.all()
+    )
+    año = serializers.PrimaryKeyRelatedField(
+        queryset=Año.objects.all()
+    )
 
     class Meta:
         model = ProyectoIntegrador
         fields = [
-            'id', 'titulo', 'descripcion', 'año', 'imagen', 'documento', 
+            'id', 'titulo', 'descripcion', 'año', 'imagen', 'documento',
             'video', 'url_github', 'categoria'
         ]
 
-    def create(self, validated_data):
-        # Extraer datos anidados
-        categoria_data = validated_data.pop('categoria')
-        año_data = validated_data.pop('año')
+    def to_representation(self, instance):
+       
+        representation = super().to_representation(instance)
+        
+        
+        categoria = instance.categoria
+        representation['categoria'] = {
+            'id': categoria.id,
+            'nombre': categoria.nombre
+        }
 
-        # Buscar o crear la instancia de Año
-        año_instance, _ = Año.objects.get_or_create(
-            año=año_data.get('año'),
-            semestre=año_data.get('semestre')
-        )
+       
+        año = instance.año
+        representation['año'] = {
+            'id': año.id,
+            'año': año.año,
+            'semestre': año.get_semestre_display()
+        }
 
-        # Buscar o crear la instancia de Categoría
-        categoria_instance, _ = CategoriaProyecto.objects.get_or_create(
-            nombre=categoria_data.get('nombre')
-        )
+        return representation
 
-        # Crear la instancia de ProyectoIntegrador
-        proyecto_integrador_instance = ProyectoIntegrador.objects.create(
-            categoria=categoria_instance,
-            año=año_instance,
-            **validated_data
-        )
-
-        return proyecto_integrador_instance
 
     def to_representation(self, instance):
         """

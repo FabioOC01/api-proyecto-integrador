@@ -5,11 +5,11 @@ from django.core.validators import MinValueValidator, MaxValueValidator
 from django.forms import ValidationError
 
 class CategoriaProyecto(models.Model):
-    nombre = models.CharField(max_length=100)
-    descripcion = models.TextField()
+    nombre = models.CharField(max_length=100, unique=True)
 
     def __str__(self):
         return self.nombre
+
 
 class Año(models.Model):
     año = models.IntegerField(default=date.today().year)
