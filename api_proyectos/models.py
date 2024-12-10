@@ -57,6 +57,9 @@ class Alumno(models.Model):
     def __str__(self):
         return f"{self.nombre} {self.apellido}"
 
+    class Meta:
+        db_table = 'api_proyectos_alumno'  # Especificamos el nombre deseado para la tabla
+
 class AlumnoProyecto(models.Model):
     proyecto = models.ForeignKey(ProyectoIntegrador, on_delete=models.CASCADE, null=True, blank=True)
     grupo = models.ForeignKey(Grupo, on_delete=models.CASCADE, null=True, blank=True)
