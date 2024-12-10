@@ -14,8 +14,8 @@ class CategoriaProyectoSerializer(serializers.ModelSerializer):
 
 class ProyectoIntegradorSerializer(serializers.ModelSerializer):
     imagen = serializers.ImageField(use_url=True)
-    categoria = CategoriaProyectoSerializer()  
-    año = AñoSerializer()
+    categoria = CategoriaProyectoSerializer(read_only=True)
+    año = AñoSerializer(read_only=True)
 
     class Meta:
         model = ProyectoIntegrador
