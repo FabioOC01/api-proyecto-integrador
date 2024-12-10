@@ -25,16 +25,22 @@ class ProyectoIntegradorSerializer(serializers.ModelSerializer):
         ]
 
     def create(self, validated_data):
-       
+        # Extraer los datos anidados
         categoria_data = validated_data.pop('categoria')
         año_data = validated_data.pop('año')
 
-      
-        año_instance, created = Año.objects.get_or_create(**año_data)
+        # Buscar o crear el año
+        año_instance, created = Año.objects.get_or_create(
+            año=año_data.get('año'),
+            semestre=año_data.get('semestre')
+        )
 
-       
-        categoria_instance = CategoriaProyecto.objects.create(**categoria_data)
+        # Buscar o crear la categoría
+        categoria_instance, created = CategoriaProyecto.objects.get_or_create(
+            nombre=categoria_data.get('nombre')
+        )
 
+        # Crear la instancia del Proyecto Integrador
         proyecto_integrador_instance = ProyectoIntegrador.objects.create(
             categoria=categoria_instance,
             año=año_instance,
@@ -42,6 +48,7 @@ class ProyectoIntegradorSerializer(serializers.ModelSerializer):
         )
 
         return proyecto_integrador_instance
+
 
 
 class SeccionSerializer(serializers.ModelSerializer):
