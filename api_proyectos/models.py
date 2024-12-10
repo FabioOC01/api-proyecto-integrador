@@ -72,6 +72,8 @@ class AlumnoProyecto(models.Model):
 
 class Comentario(models.Model):
     contenido = models.TextField()
+    fecha_comentario = models.DateTimeField(auto_now_add=True)
+    usuario = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True)
     proyecto = models.ForeignKey(ProyectoIntegrador, on_delete=models.CASCADE, null=True, blank=True)
 
 class HistorialProyecto(models.Model):
