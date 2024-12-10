@@ -11,43 +11,17 @@ class CategoriaProyectoSerializer(serializers.ModelSerializer):
         model = CategoriaProyecto
         fields = ['id', 'nombre']
 
-
 class ProyectoIntegradorSerializer(serializers.ModelSerializer):
     imagen = serializers.ImageField(use_url=True)
-    categoria = serializers.PrimaryKeyRelatedField(
-        queryset=CategoriaProyecto.objects.all()
-    )
-    año = serializers.PrimaryKeyRelatedField(
-        queryset=Año.objects.all()
-    )
+    categoria = serializers.PrimaryKeyRelatedField(queryset=CategoriaProyecto.objects.all())
+    año = serializers.PrimaryKeyRelatedField(queryset=Año.objects.all())
 
     class Meta:
         model = ProyectoIntegrador
         fields = [
-            'id', 'titulo', 'descripcion', 'año', 'imagen', 'documento',
+            'id', 'titulo', 'descripcion', 'año', 'imagen', 'documento', 
             'video', 'url_github', 'categoria'
         ]
-
-    def to_representation(self, instance):
-       
-        representation = super().to_representation(instance)
-        
-        
-        categoria = instance.categoria
-        representation['categoria'] = {
-            'id': categoria.id,
-            'nombre': categoria.nombre
-        }
-
-       
-        año = instance.año
-        representation['año'] = {
-            'id': año.id,
-            'año': año.año,
-            'semestre': año.get_semestre_display()
-        }
-
-        return representation
 
 
     def to_representation(self, instance):
