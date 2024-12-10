@@ -15,14 +15,13 @@ class Año(models.Model):
     año = models.IntegerField(default=date.today().year)
 
     def __str__(self):
-        return str(self.año)
-
+        return f"{self.año}"
 
     class Meta:
-        unique_together = ('año')
+        # Usa una lista o tupla, incluso si es un solo campo
+        unique_together = [('año',)]  # Formato correcto
 
-    def __str__(self):
-        return f"{self.año}"
+
 
 class ProyectoIntegrador(models.Model):
     titulo = models.CharField(max_length=200)
