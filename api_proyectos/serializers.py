@@ -43,8 +43,9 @@ class GrupoSerializer(serializers.ModelSerializer):
         fields = ['id', 'nombre', 'seccion', 'seccion_id']
 
 class AlumnoSerializer(serializers.ModelSerializer):
+    proyecto_nombre = serializers.CharField(source='proyecto.titulo', read_only=True)  
+
     class Meta:
         model = Alumno
-        fields = ['id', 'nombre', 'apellido', 'grupo', 'seccion', 'proyecto']
-
+        fields = ['id', 'nombre', 'apellido', 'grupo', 'seccion', 'proyecto', 'proyecto_nombre']
 
