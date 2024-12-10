@@ -4,7 +4,8 @@ from .models import ProyectoIntegrador, CategoriaProyecto, Año, Grupo, Alumno, 
 class AñoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Año
-        fields = ['id', 'año', 'semestre']
+        fields = ['id', 'año']
+
 
 class CategoriaProyectoSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,7 +15,7 @@ class CategoriaProyectoSerializer(serializers.ModelSerializer):
 class ProyectoIntegradorSerializer(serializers.ModelSerializer):
     imagen = serializers.ImageField(use_url=True)
     categoria = serializers.PrimaryKeyRelatedField(queryset=CategoriaProyecto.objects.all())
-    año = serializers.PrimaryKeyRelatedField(queryset=Año.objects.all())
+    año = AñoSerializer()
 
     class Meta:
         model = ProyectoIntegrador
@@ -22,25 +23,6 @@ class ProyectoIntegradorSerializer(serializers.ModelSerializer):
             'id', 'titulo', 'descripcion', 'año', 'imagen', 'documento', 
             'video', 'url_github', 'categoria'
         ]
-
-
-    def to_representation(self, instance):
-        """
-        Modificar la representación para mostrar nombres legibles de `año` y `categoria`.
-        """
-        representation = super().to_representation(instance)
-        # Añadir nombres legibles
-        representation['año'] = {
-            'id': instance.año.id,
-            'año': instance.año.año,
-            'semestre': instance.año.get_semestre_display(),
-        }
-        representation['categoria'] = {
-            'id': instance.categoria.id,
-            'nombre': instance.categoria.nombre,
-        }
-        return representation
-
 
 
 class SeccionSerializer(serializers.ModelSerializer):

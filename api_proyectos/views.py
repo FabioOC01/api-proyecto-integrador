@@ -42,8 +42,9 @@ class ProtectedView(APIView):
 
 
 class ProyectoIntegradorViewSet(viewsets.ModelViewSet):
-    queryset = ProyectoIntegrador.objects.all()
+    queryset = ProyectoIntegrador.objects.all().select_related('categoria', 'año')
     serializer_class = ProyectoIntegradorSerializer
+
     
 class CategoriaProyectoViewSet(viewsets.ModelViewSet):
     queryset = CategoriaProyecto.objects.all()
