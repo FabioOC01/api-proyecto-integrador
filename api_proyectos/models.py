@@ -19,10 +19,10 @@ class Año(models.Model):
 
 
     class Meta:
-        unique_together = ('año', 'semestre')
+        unique_together = ('año')
 
     def __str__(self):
-        return f"{self.año} - Semestre {self.semestre}"
+        return f"{self.año}"
 
 class ProyectoIntegrador(models.Model):
     titulo = models.CharField(max_length=200)
