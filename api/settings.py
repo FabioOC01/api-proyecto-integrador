@@ -102,10 +102,10 @@ WSGI_APPLICATION = 'api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'db_integrador',  
-        'USER': 'root', 
-        'PASSWORD': 'bZH98yPSSyWP3gNXXxpMoWigwmRtAs8O', 
-        'HOST': 'dpg-ct782sjtq21c73bkdcf0-a',  
+        'NAME': 'bd_integrador',  
+        'USER': 'bd_integrador_user', 
+        'PASSWORD': '6rUPGi2vr22VE3sEDDUW5upUqa98LXWN', 
+        'HOST': 'dpg-cvhcn7hopnds73b3ck1g-a',  
         'PORT': '5432', 
         'OPTIONS': {
             'sslmode': 'require',  
