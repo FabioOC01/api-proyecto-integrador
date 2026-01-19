@@ -54,6 +54,8 @@ STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 # Configuración de AWS S3 en Django
 
 import os
+import dj_database_url
+
 
 AWS_ACCESS_KEY_ID = os.getenv('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.getenv('AWS_SECRET_ACCESS_KEY')
@@ -99,18 +101,25 @@ TEMPLATES = [
 WSGI_APPLICATION = 'api.wsgi.application'
 
 
+# DATABASES = {
+  #  'default': {
+   #     'ENGINE': 'django.db.backends.postgresql',
+    #    'NAME': 'bd_integrador',  
+   #     'USER': 'bd_integrador_user', 
+    #    'PASSWORD': '6rUPGi2vr22VE3sEDDUW5upUqa98LXWN', 
+    #    'HOST': 'dpg-cvhcn7hopnds73b3ck1g-a',  
+    #    'PORT': '5432', 
+    #    'OPTIONS': {
+    #        'sslmode': 'require',  
+    #    },
+    #} 
+#}
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'bd_integrador',  
-        'USER': 'bd_integrador_user', 
-        'PASSWORD': '6rUPGi2vr22VE3sEDDUW5upUqa98LXWN', 
-        'HOST': 'dpg-cvhcn7hopnds73b3ck1g-a',  
-        'PORT': '5432', 
-        'OPTIONS': {
-            'sslmode': 'require',  
-        },
-    }
+    "default": dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+    )
 }
 
 
@@ -139,10 +148,5 @@ USE_I18N = True
 USE_TZ = True
 
 
-
-
 STATIC_URL = 'static/'
-
-
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
