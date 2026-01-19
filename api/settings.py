@@ -49,9 +49,6 @@ import os
 #MEDIA_ROOT = os.path.join(BASE_DIR, 'media') 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
-
-# Configuración de AWS S3 en Django
 
 import os
 import dj_database_url
